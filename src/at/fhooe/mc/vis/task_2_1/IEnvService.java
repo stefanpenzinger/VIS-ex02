@@ -39,4 +39,6 @@ public interface IEnvService extends Remote {
      * @see java.rmi.RemoteException
      */
     public EnvData[] requestAll() throws RemoteException;
+
+    public String saySomething() throws RemoteException;
 }

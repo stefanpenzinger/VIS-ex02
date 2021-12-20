@@ -4,6 +4,8 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 /*
  * Simple java client
@@ -14,9 +16,11 @@ public class Client {
 
     public static void main(String[] args)
             throws MalformedURLException, RemoteException, NotBoundException {
+        String addr = "DateService";
+        Registry reg = LocateRegistry.getRegistry();
+        IEnvService service = (IEnvService)reg.lookup(addr);
 
-        look_up = (IEnvService) Naming.lookup("//localhost/MyServer");
-
-        //String response = look_up.saySomething();
+        String response = service.saySomething();
+        System.out.println(response);
     }
 }

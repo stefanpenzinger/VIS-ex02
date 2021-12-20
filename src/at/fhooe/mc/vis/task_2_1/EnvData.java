@@ -22,8 +22,8 @@ public class EnvData implements Serializable {
      *
      * @param _type (type of sensor)
      */
-    EnvData(String _type){
-        mType = EnvDataTypes.valueOf(_type);
+    EnvData(EnvDataTypes _type){
+        mType = _type;
         mData = new Vector<>();
         seedSensorData();
     }
