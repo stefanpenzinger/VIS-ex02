@@ -15,7 +15,7 @@ public class Client {
 
     private static IEnvService look_up;
 
-    public static void main(String[] args) {
+    public static void main(String[] _args) {
 
         System.out.println("Do you want to log onto the server? (y/n)");
         Scanner s = new Scanner(System.in);
@@ -32,7 +32,7 @@ public class Client {
                 IEnvService service = (IEnvService)reg.lookup(addr);
 
                 do {
-                    System.out.println("1. requestEnvironmentDataTypes()\n2. requestEnvironmentData()\n" +
+                    System.out.println("1. requestEnvironmentDataTypes()\n2. requestEnvironmentData(air)\n" +
                             "3. requestAll()\n4. saySomething()\n5. Exit");
                     answer = s.nextLine();
                     choice = Integer.parseInt(answer);

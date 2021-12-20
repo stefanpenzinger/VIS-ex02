@@ -42,6 +42,7 @@ public class EnvData implements Serializable {
         Random rand = new Random();
         mTimestamp = new Timestamp(System.currentTimeMillis());
         int values = (mType == EnvDataTypes.air) ? 3 : 1;
+        mData.clear();
         for(int i = 0; i < values; i++){
             mData.add(rand.nextInt(100));
         }
