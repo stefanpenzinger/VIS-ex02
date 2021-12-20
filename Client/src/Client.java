@@ -21,7 +21,7 @@ public class Client {
             try {
                 int choice  = 7;
 
-                String addr = "DateService";
+                String addr = "IEnvService";
                 Registry reg = null;
 
                 reg = LocateRegistry.getRegistry();

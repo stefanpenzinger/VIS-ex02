@@ -38,20 +38,6 @@ public class Server extends UnicastRemoteObject implements IEnvService {
         mSensors[EnvData.EnvDataTypes.noise.ordinal()] = new EnvData(EnvData.EnvDataTypes.noise);
     }
 
-    public static void main(String[] _args){
-        try {
-            Server server = new Server();
-            Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
-            reg.rebind("DateService", server);
-            System.err.println("Server ready");
-
-        } catch (Exception e) {
-
-            System.err.println("Server exception: " + e.toString());
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public String[] requestEnvironmentDataTypes() throws RemoteException {
         String[] rv = new String[EnvData.EnvDataTypes.values().length];
