@@ -1,7 +1,3 @@
-package at.fhooe.mc.vis.task_2_1;
-
-import at.fhooe.mc.vis.task_2_1.EnvData;
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

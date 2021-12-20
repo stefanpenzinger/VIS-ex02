@@ -1,8 +1,5 @@
-package at.fhooe.mc.vis.task_2_1;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Vector;
 
