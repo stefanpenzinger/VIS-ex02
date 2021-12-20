@@ -40,5 +40,6 @@ public interface IEnvService extends Remote {
      */
     public EnvData[] requestAll() throws RemoteException;
 
+    /** Method for testing a basic communication between server & client */
     public String saySomething() throws RemoteException;
 }
