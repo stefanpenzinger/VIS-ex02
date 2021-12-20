@@ -17,21 +17,15 @@ public class EnvData implements Serializable {
     Vector<Integer> mData; // represents sensor data
     EnvDataTypes mType; // type of sensor
 
+    /**
+     * initializes a new sensor
+     *
+     * @param _type (type of sensor)
+     */
     EnvData(String _type){
         mType = EnvDataTypes.valueOf(_type);
         mData = new Vector<>();
         seedSensorData();
-    }
-
-    /**
-     * initializes a new sensor
-     *
-     * @param _data (sensor data)
-     * @param _type (type of sensor)
-     */
-    EnvData(Vector<Integer> _data, EnvDataTypes _type){
-        mData = _data;
-        mType = _type;
     }
 
     /**
