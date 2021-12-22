@@ -3,11 +3,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Arrays;
 
 public class ServiceMgmt {
 
-    enum ServiceCommands { start, shutdown, stop}
+    enum ServiceCommands { start, stop, quit }
 
     public static void main(String[] _args) {
 
@@ -33,15 +34,17 @@ public class ServiceMgmt {
                     }
                     case stop -> {
                         reg.unbind("IEnvService");
+                        UnicastRemoteObject.unexportObject(server, true);
                         System.out.println("Server stopped");
                     }
-                    case shutdown -> {
+                    case quit -> {
+                        reg.unbind("IEnvService");
                         System.exit(0);
                     }
                 }
             } while (true);
         } catch (Exception e) {
-            System.err.println("Exception: " + e.toString());
+            System.err.println("Exception: " + e);
             e.printStackTrace();
         }
         finally {

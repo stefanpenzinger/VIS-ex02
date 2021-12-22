@@ -1,3 +1,4 @@
+import java.rmi.NoSuchObjectException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -22,15 +23,20 @@ public class Client {
             if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes")) {
                 validAnswer = true;
 
-                try {
-                    int choice  = 6;
+                int choice  = 6;
 
-                    String addr = "IEnvService";
+                String addr = "IEnvService";
+                Registry reg = null;
+                IEnvService service = null;
 
-                    Registry reg = LocateRegistry.getRegistry();
-                    IEnvService service = (IEnvService)reg.lookup(addr);
+                do {
+                    try {
 
-                    do {
+                        if (reg == null) {
+                            reg = LocateRegistry.getRegistry();
+                            service = (IEnvService)reg.lookup(addr);
+                        }
+
                         System.out.println("""
                                 1. requestEnvironmentDataTypes()
                                 2. requestEnvironmentData()
@@ -71,14 +77,30 @@ public class Client {
                             default:
                                 System.out.println("Invalid answer");
                         }
+                    } catch (RemoteException e) {
+                        System.out.println("Server did shutdown");
+                        e.printStackTrace();
+                        validAnswer = false;
 
-                    } while (choice != 5);
+                        break;
+                    }
+                    catch (NotBoundException e) {
+                        System.out.println("Server not running");
+                        e.printStackTrace();
 
-                    System.out.println("Shutting down");
-                    reg.unbind(addr);
+                        validAnswer = false;
+                    }
 
-                } catch (RemoteException | NotBoundException e) {
-                    e.printStackTrace();
+                } while (choice != 5);
+
+                if (choice == 5) {
+                    try {
+                        System.out.println("Shutting down");
+                        reg.unbind(addr);
+                    } catch (RemoteException | NotBoundException e) {
+                        System.out.println("Error while shutting down server");
+                        e.printStackTrace();
+                    }
                 }
             }
             else if (answer.equalsIgnoreCase("n") || answer.equalsIgnoreCase("no")) {
