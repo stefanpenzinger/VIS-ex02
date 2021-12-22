@@ -1,5 +1,3 @@
-package at.fhooe.mc.vis.task_2_1;
-
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -40,7 +38,7 @@ public class Server extends UnicastRemoteObject implements IEnvService {
         mSensors[EnvData.EnvDataTypes.noise.ordinal()] = new EnvData(EnvData.EnvDataTypes.noise);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] _args){
         try {
             Server server = new Server();
             Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
