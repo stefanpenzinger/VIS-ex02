@@ -2,7 +2,6 @@ package at.fhooe.mc.vis.task_2_1;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Vector;
 
@@ -58,7 +57,7 @@ public class EnvData implements Serializable {
         rv.append("Type: ").append(mType.name()).append(" | ");
         rv.append("Data: ");
         for (int i : mData) {
-            rv.append(Integer.toString(i)).append(" ");
+            rv.append((i)).append(" ");
         }
         return rv.toString();
     }

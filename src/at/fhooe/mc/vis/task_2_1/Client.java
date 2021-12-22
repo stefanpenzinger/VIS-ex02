@@ -1,7 +1,5 @@
 package at.fhooe.mc.vis.task_2_1;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -15,73 +13,83 @@ public class Client {
 
     private static IEnvService look_up;
 
-    public static void main(String[] args) {
+    public static void main(String[] _args) {
+        boolean validAnswer = false;
 
-        System.out.println("Do you want to log onto the server? (y/n)");
-        Scanner s = new Scanner(System.in);
-        String answer = s.nextLine();
+        do {
+            System.out.println("Do you want to log onto the server? (y/n)");
+            Scanner s = new Scanner(System.in);
+            String answer = s.nextLine();
 
-        if (answer.equals("y") || answer.equals("Y") || answer.equals("yes") || answer.equals("Yes")) {
-            try {
-                int choice  = 7;
+            if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes")) {
+                validAnswer = true;
 
-                String addr = "DateService";
-                Registry reg = null;
+                try {
+                    int choice  = 6;
 
-                reg = LocateRegistry.getRegistry();
-                IEnvService service = (IEnvService)reg.lookup(addr);
+                    String addr = "DateService";
 
-                do {
-                    System.out.println("1. requestEnvironmentDataTypes()\n2. requestEnvironmentData()\n" +
-                            "3. requestAll()\n4. saySomething()\n5. Exit");
-                    answer = s.nextLine();
-                    choice = Integer.parseInt(answer);
+                    Registry reg = LocateRegistry.getRegistry();
+                    IEnvService service = (IEnvService)reg.lookup(addr);
 
-                    switch (choice) {
-                        case(1):
-                            String[] sensorTypes = service.requestEnvironmentDataTypes();
+                    do {
+                        System.out.println("""
+                                1. requestEnvironmentDataTypes()
+                                2. requestEnvironmentData()
+                                3. requestAll()
+                                4. saySomething()
+                                5. Exit""");
+                        answer = s.nextLine();
+                        choice = Integer.parseInt(answer);
 
-                            for (String sensorType:sensorTypes) {
-                                System.out.println(sensorType);
-                            }
+                        switch (choice) {
+                            case(1):
+                                String[] sensorTypes = service.requestEnvironmentDataTypes();
 
-                            break;
-                        case(2):
-                            EnvData data = service.requestEnvironmentData("air");
-                            System.out.println(data);
+                                for (String sensorType:sensorTypes) {
+                                    System.out.println(sensorType);
+                                }
 
-                            break;
-                        case(3):
-                            EnvData[] sensorData = service.requestAll();
+                                break;
+                            case(2):
+                                EnvData data = service.requestEnvironmentData("air");
+                                System.out.println(data);
 
-                            for (EnvData sensorDataEntry:sensorData) {
-                                System.out.println(sensorDataEntry);
-                            }
+                                break;
+                            case(3):
+                                EnvData[] sensorData = service.requestAll();
 
-                            break;
-                        case(4):
-                            System.out.println(service.saySomething());
+                                for (EnvData sensorDataEntry:sensorData) {
+                                    System.out.println(sensorDataEntry);
+                                }
 
-                            break;
-                        case(5):
-                            break;
-                        default:
-                            System.out.println("Invalid answer");
-                    }
+                                break;
+                            case(4):
+                                System.out.println(service.saySomething());
 
-                } while (choice != 5);
+                                break;
+                            case(5):
+                                break;
+                            default:
+                                System.out.println("Invalid answer");
+                        }
 
-                System.out.println("Shutting down");
-                reg.unbind(addr);
+                    } while (choice != 5);
 
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            } catch (NotBoundException e) {
-                e.printStackTrace();
+                    System.out.println("Shutting down");
+                    reg.unbind(addr);
+
+                } catch (RemoteException | NotBoundException e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        else {
-            System.out.println("Dann halt ned.");
-        }
+            else if (answer.equalsIgnoreCase("n") || answer.equalsIgnoreCase("no")) {
+                System.out.println("Dann halt ned.");
+                validAnswer = true;
+            }
+            else {
+                System.out.println("Please enter a valid answer.");
+            }
+        } while (!validAnswer);
     }
 }

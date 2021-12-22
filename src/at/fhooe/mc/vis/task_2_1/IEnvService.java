@@ -1,7 +1,5 @@
 package at.fhooe.mc.vis.task_2_1;
 
-import at.fhooe.mc.vis.task_2_1.EnvData;
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -14,7 +12,7 @@ public interface IEnvService extends Remote {
      * @see java.lang.String
      * @see java.rmi.RemoteException
      */
-    public String[] requestEnvironmentDataTypes() throws RemoteException;
+    String[] requestEnvironmentDataTypes() throws RemoteException;
     /**
      * Provides the measurement values of a specific sensor in the form
      * of an environmental data object (EnvData)
@@ -27,7 +25,7 @@ public interface IEnvService extends Remote {
      * @see java.lang.String
      * @see java.rmi.RemoteException
      */
-    public EnvData requestEnvironmentData(String _type) throws RemoteException;
+    EnvData requestEnvironmentData(String _type) throws RemoteException;
 
     /**
      * Provides the measurement values of all available sensors
@@ -38,8 +36,8 @@ public interface IEnvService extends Remote {
      * @see java.lang.String
      * @see java.rmi.RemoteException
      */
-    public EnvData[] requestAll() throws RemoteException;
+    EnvData[] requestAll() throws RemoteException;
 
     /** Method for testing a basic communication between server & client */
-    public String saySomething() throws RemoteException;
+    String saySomething() throws RemoteException;
 }
