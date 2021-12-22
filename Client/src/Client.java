@@ -25,7 +25,7 @@ public class Client {
                 try {
                     int choice  = 6;
 
-                    String addr = "DateService";
+                    String addr = "IEnvService";
 
                     Registry reg = LocateRegistry.getRegistry();
                     IEnvService service = (IEnvService)reg.lookup(addr);
