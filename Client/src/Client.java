@@ -1,5 +1,3 @@
-package at.fhooe.mc.vis.task_2_1;
-
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;

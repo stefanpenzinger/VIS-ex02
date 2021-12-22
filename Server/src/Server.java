@@ -5,6 +5,7 @@ import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 
+
 public class Server extends UnicastRemoteObject implements IEnvService {
 
     /** Array of EnvData to store and access the different Sensors available */
@@ -12,7 +13,7 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 
     /**
      * Constructor creating a Server Object and initializing new EnvData Objects
-     * @throws RemoteException
+     * @throws RemoteException Throws a remote exception
      */
     protected Server() throws RemoteException {
        initalizesSensors();
@@ -47,7 +48,7 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 
         } catch (Exception e) {
 
-            System.err.println("Server exception: " + e.toString());
+            System.err.println("Server exception: " + e);
             e.printStackTrace();
         }
     }
