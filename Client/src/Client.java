@@ -12,6 +12,7 @@ public class Client {
     private static IEnvService look_up;
 
     public static void main(String[] _args) {
+<<<<<<< HEAD
         boolean validAnswer = false;
 
         do {

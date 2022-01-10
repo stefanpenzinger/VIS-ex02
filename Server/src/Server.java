@@ -53,6 +53,8 @@ public class Server extends UnicastRemoteObject implements IEnvService {
         }
     }
 
+=======
+>>>>>>> serviceMgmt
     @Override
     public String[] requestEnvironmentDataTypes() throws RemoteException {
         String[] rv = new String[EnvData.EnvDataTypes.values().length];
