@@ -5,7 +5,6 @@ import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 
-
 public class Server extends UnicastRemoteObject implements IEnvService {
 
     /** Array of EnvData to store and access the different Sensors available */
@@ -39,6 +38,7 @@ public class Server extends UnicastRemoteObject implements IEnvService {
         mSensors[EnvData.EnvDataTypes.noise.ordinal()] = new EnvData(EnvData.EnvDataTypes.noise);
     }
 
+<<<<<<< HEAD
     public static void main(String[] _args){
         try {
             Server server = new Server();
@@ -55,6 +55,8 @@ public class Server extends UnicastRemoteObject implements IEnvService {
 
 =======
 >>>>>>> serviceMgmt
+=======
+>>>>>>> 1d60ae517593695790c4272a1ccfd48db44f6bba
     @Override
     public String[] requestEnvironmentDataTypes() throws RemoteException {
         String[] rv = new String[EnvData.EnvDataTypes.values().length];
