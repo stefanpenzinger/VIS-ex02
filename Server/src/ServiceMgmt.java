@@ -5,8 +5,15 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Arrays;
 
+/**
+ * Manages the server status
+ * start, stop or shutdown the Server
+ */
 public class ServiceMgmt {
 
+    /**
+     * commands which can be executed in the Service Management
+     */
     enum ServiceCommands { start, shutdown, stop}
 
     public static void main(String[] _args) {
