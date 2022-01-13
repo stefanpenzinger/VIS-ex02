@@ -5,11 +5,9 @@ import java.rmi.registry.Registry;
 import java.util.Scanner;
 
 /*
- * Simple java client
+ * RMI Java Client to request sensor data from our EnvironmentService
  */
 public class Client {
-
-    private static IEnvService look_up;
 
     public static void main(String[] _args) {
 
@@ -45,7 +43,6 @@ public class Client {
                         case(2):
                             EnvData data = service.requestEnvironmentData("air");
                             System.out.println(data);
-
                             break;
                         case(3):
                             EnvData[] sensorData = service.requestAll();
